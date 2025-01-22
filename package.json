@@ -11,7 +11,13 @@
   "bugs": {
     "url": "https://github.com/rodbe-io/rbx/issues"
   },
-  "description": "Generator of \"TypeScript\" projects, ready to deploy. Agile, Scalable, Strict",
+  "dependencies": {
+    "@inquirer/input": "^4.1.3",
+    "@inquirer/select": "^4.0.6",
+    "@rodbe/fn-utils": "^1.5.0",
+    "replace-in-file": "^8.3.0"
+  },
+  "description": "Generator of TypeScript projects, ready to deploy. Agile, Scalable, Strict",
   "devDependencies": {
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
@@ -25,6 +31,7 @@
     "@semantic-release/npm": "10.0.6",
     "@semantic-release/release-notes-generator": "^10.0.3",
     "@types/eslint__js": "^8.42.3",
+    "@types/inquirer": "^9.0.7",
     "@types/node": "^22.10.3",
     "@vitest/coverage-v8": "^2.0.5",
     "commitizen": "^4.3.1",
