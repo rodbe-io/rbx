@@ -43,7 +43,11 @@ export const renameFiles = ({ commandName, projectDir }: RenameFilesProps) => {
   const commmandTemaplteFilePath = join(projectDir, 'src', 'commands', 'RBX_COMMAND.ts');
   const commmandFilePath = join(projectDir, 'src', 'commands', `${commandName}.ts`);
 
+  const helperTemaplteFilePath = join(projectDir, 'src', 'helpers', 'RBX_COMMAND.ts');
+  const helperFilePath = join(projectDir, 'src', 'helpers', `${commandName}.ts`);
+
   renameSync(commmandTemaplteFilePath, commmandFilePath);
+  renameSync(helperTemaplteFilePath, helperFilePath);
 };
 
 interface UpdatePackageJsonProps {

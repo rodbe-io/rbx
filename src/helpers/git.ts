@@ -2,8 +2,9 @@ import { execSync } from 'node:child_process';
 import { rmSync } from 'node:fs';
 import { join } from 'node:path';
 
-import { ARCHETYPE_REPOSITORIES, type ArchetypeTypes } from '@/constants';
 import { tryCatch } from '@rodbe/fn-utils';
+
+import { ARCHETYPE_REPOSITORIES, type ArchetypeTypes } from '@/constants';
 
 export const initGitRepository = (projectDir: string) => {
   execSync('git init', {

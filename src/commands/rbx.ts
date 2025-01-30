@@ -4,16 +4,26 @@ import { join } from 'node:path';
 
 import input from '@inquirer/input';
 import select from '@inquirer/select';
+import { checkUpdates } from '@rodbe/check-updates';
 
 import { initEvents } from '@/events';
-import { ARCHETYPE_OPTIONS } from '@/constants';
-import { cloneArchetype, initGitRepository, removeGitFolder } from '@/helpers/git';
-import { renameFiles, replaceKeys, updatePackageJson } from '@/helpers/files';
+import { ARCHETYPE_OPTIONS, DAY_IN_MS, WEEK_IN_MS } from '@/constants';
+import { createNewProject } from '@/tasks/create-new-project';
+import { getPkgJsonPath } from '@/helpers/rbx';
 
 initEvents();
 
 const init = async () => {
   let commandName = '';
+
+  const { checkNewVersion } = checkUpdates({
+    askToUpdate: true,
+    dontAskCheckInterval: DAY_IN_MS,
+    packageJsonPath: getPkgJsonPath(),
+    updateCheckInterval: WEEK_IN_MS,
+  });
+
+  await checkNewVersion?.();
 
   const archetypeType = await select({
     choices: ARCHETYPE_OPTIONS,
@@ -61,9 +71,7 @@ const init = async () => {
 
   const projectDir = join(process.cwd(), projectName);
 
-  cloneArchetype({ archetypeType, projectDir, projectName });
-  removeGitFolder(projectDir);
-  updatePackageJson({
+  createNewProject({
     archetypeType,
     author,
     commandName,
@@ -73,11 +81,6 @@ const init = async () => {
     repositoryUrl,
     scope,
   });
-  replaceKeys(projectDir);
-  if (archetypeType === 'ts-cli') {
-    renameFiles({ commandName, projectDir });
-  }
-  initGitRepository(projectDir);
 };
 
 await init();
