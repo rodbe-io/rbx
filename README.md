@@ -10,6 +10,10 @@ This project provides a **CLI tool** to **scaffold new projects based on predefi
 - Automatically initializes a git repository.
 - Customizes project files based on user inputs.
 
+## Prerequisites
+
+- **Node.js 18.18.2 or higher**
+
 ## Installation
 
 To use this CLI tool, ensure you have Node.js installed. Then, you can run the script directly using:
