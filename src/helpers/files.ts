@@ -5,7 +5,7 @@ import { replaceInFile } from 'replace-in-file';
 import { to } from '@rodbe/fn-utils';
 
 import { getHttpsRepositoryUrl, getPackageName, getScope } from '@/mappers';
-import type { ArchetypeTypes } from '@/constants';
+import { type ArchetypeTypes, KEY_RBX_COMMAND } from '@/constants';
 
 interface ReplaceInFileProps {
   from: string;
@@ -40,10 +40,10 @@ interface RenameFilesProps {
 }
 
 export const renameFiles = ({ commandName, projectDir }: RenameFilesProps) => {
-  const commmandTemaplteFilePath = join(projectDir, 'src', 'commands', 'RBX_COMMAND.ts');
+  const commmandTemaplteFilePath = join(projectDir, 'src', 'commands', `${KEY_RBX_COMMAND}.ts`);
   const commmandFilePath = join(projectDir, 'src', 'commands', `${commandName}.ts`);
 
-  const helperTemaplteFilePath = join(projectDir, 'src', 'helpers', 'RBX_COMMAND.ts');
+  const helperTemaplteFilePath = join(projectDir, 'src', 'helpers', `${KEY_RBX_COMMAND}.ts`);
   const helperFilePath = join(projectDir, 'src', 'helpers', `${commandName}.ts`);
 
   renameSync(commmandTemaplteFilePath, commmandFilePath);

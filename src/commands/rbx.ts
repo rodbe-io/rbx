@@ -71,7 +71,7 @@ const init = async () => {
 
   const projectDir = join(process.cwd(), projectName);
 
-  createNewProject({
+  await createNewProject({
     archetypeType,
     author,
     commandName,

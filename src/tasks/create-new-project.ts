@@ -1,6 +1,6 @@
 import { cloneArchetype, initGitRepository, removeGitFolder } from '@/helpers/git';
 import { renameFiles, replaceKeys, updatePackageJson } from '@/helpers/files';
-import type { ArchetypeTypes } from '@/constants';
+import { type ArchetypeTypes, KEY_RBX_COMMAND } from '@/constants';
 
 interface CreateNewProjectProps {
   archetypeType: ArchetypeTypes;
@@ -13,7 +13,7 @@ interface CreateNewProjectProps {
   scope: string;
 }
 
-export const createNewProject = ({
+export const createNewProject = async ({
   archetypeType,
   author,
   commandName,
@@ -35,7 +35,7 @@ export const createNewProject = ({
     repositoryUrl,
     scope,
   });
-  replaceKeys(projectDir);
+  await replaceKeys(projectDir)({ from: KEY_RBX_COMMAND, to: commandName });
   if (archetypeType === 'ts-cli') {
     renameFiles({ commandName, projectDir });
   }

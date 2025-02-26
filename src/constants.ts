@@ -3,6 +3,8 @@ export const ARCHETYPE_REPOSITORIES = {
   'ts-lib': 'https://github.com/rodbe-io/template-ts-lib.git',
 } as const;
 
+export const KEY_RBX_COMMAND = 'RBX_COMMAND';
+
 export type ArchetypeTypes = keyof typeof ARCHETYPE_REPOSITORIES;
 
 interface ArchetypeOption {
