@@ -1,6 +1,6 @@
 {
   "name": "@rodbe/rbx",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generator of TypeScript projects, ready to deploy. Agile, Scalable, Strict",
   "keywords": [
     "typescript",
