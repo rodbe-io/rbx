@@ -1,3 +1,10 @@
+## [1.1.0](https://github.com/rodbe-io/rbx/compare/v1.0.1...v1.1.0) (2025-07-09)
+
+
+### Features
+
+* add gh package config ([babd99d](https://github.com/rodbe-io/rbx/commit/babd99d2df9f4d1301caa1107ea66bc5372a95d4))
+
 ## [1.0.1](https://github.com/rodbe-io/rbx/compare/v1.0.0...v1.0.1) (2025-02-26)
 
 
