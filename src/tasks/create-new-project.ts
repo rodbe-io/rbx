@@ -1,6 +1,6 @@
 import { cloneArchetype, initGitRepository, removeGitFolder } from '@/helpers/git';
 import { renameFiles, replaceKeys, updatePackageJson } from '@/helpers/files';
-import { type ArchetypeTypes, KEY_RBX_COMMAND } from '@/constants';
+import { type ArchetypeTypes, KEY_RBX_COMMAND, type RegistryType } from '@/constants';
 
 interface CreateNewProjectProps {
   archetypeType: ArchetypeTypes;
@@ -9,6 +9,7 @@ interface CreateNewProjectProps {
   description: string;
   projectDir: string;
   projectName: string;
+  registryType: RegistryType;
   repositoryUrl: string;
   scope: string;
 }
@@ -20,6 +21,7 @@ export const createNewProject = async ({
   description,
   projectDir,
   projectName,
+  registryType,
   repositoryUrl,
   scope,
 }: CreateNewProjectProps) => {
@@ -32,6 +34,7 @@ export const createNewProject = async ({
     description,
     projectDir,
     projectName,
+    registryType,
     repositoryUrl,
     scope,
   });

@@ -26,6 +26,23 @@ export const ARCHETYPE_OPTIONS: Array<ArchetypeOption> = [
   },
 ];
 
+export const REGISTRIES_OPTIONS = [
+  {
+    description: 'NPM registry',
+    name: 'npm',
+    url: 'https://registry.npmjs.org',
+    value: 'npm',
+  },
+  {
+    description: 'GitHub registry',
+    name: 'github',
+    url: 'https://npm.pkg.github.com',
+    value: 'github',
+  },
+] as const;
+
+export type RegistryType = (typeof REGISTRIES_OPTIONS)[number]['value'];
+
 const MINUTE_IN_MS = 60 * 1000;
 const HOUR_IN_MS = 60 * MINUTE_IN_MS;
 

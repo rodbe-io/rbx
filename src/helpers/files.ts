@@ -5,7 +5,7 @@ import { replaceInFile } from 'replace-in-file';
 import { to } from '@rodbe/fn-utils';
 
 import { getHttpsRepositoryUrl, getPackageName, getScope } from '@/mappers';
-import { type ArchetypeTypes, KEY_RBX_COMMAND } from '@/constants';
+import { type ArchetypeTypes, KEY_RBX_COMMAND, type RegistryType } from '@/constants';
 
 interface ReplaceInFileProps {
   from: string;
@@ -57,6 +57,7 @@ interface UpdatePackageJsonProps {
   description: string;
   projectDir: string;
   projectName: string;
+  registryType: RegistryType;
   repositoryUrl: string;
   scope: string;
 }
@@ -71,6 +72,9 @@ interface PackageJson {
   homepage: string;
   keywords: Array<string>;
   name: string;
+  publishConfig: {
+    registry: string;
+  };
   repository: {
     url: string;
   };
@@ -83,6 +87,7 @@ export const updatePackageJson = ({
   description,
   projectDir,
   projectName,
+  registryType,
   repositoryUrl,
   scope,
 }: UpdatePackageJsonProps) => {
@@ -103,6 +108,11 @@ export const updatePackageJson = ({
     }
     if (archetypeType === 'ts-cli') {
       packageJson.keywords = [...packageJson.keywords, 'cli', 'cli-app', 'cli-tool', 'unix'];
+    }
+    if (registryType === 'github') {
+      packageJson.publishConfig = {
+        registry: 'https://npm.pkg.github.com',
+      };
     }
 
     writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2), 'utf-8');

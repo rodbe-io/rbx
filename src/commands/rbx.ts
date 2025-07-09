@@ -7,7 +7,7 @@ import select from '@inquirer/select';
 import { checkUpdates } from '@rodbe/check-updates';
 
 import { initEvents } from '@/events';
-import { ARCHETYPE_OPTIONS, DAY_IN_MS, WEEK_IN_MS } from '@/constants';
+import { ARCHETYPE_OPTIONS, DAY_IN_MS, REGISTRIES_OPTIONS, WEEK_IN_MS } from '@/constants';
 import { createNewProject } from '@/tasks/create-new-project';
 import { getPkgJsonPath } from '@/helpers/rbx';
 
@@ -29,6 +29,11 @@ const init = async () => {
     choices: ARCHETYPE_OPTIONS,
     default: ARCHETYPE_OPTIONS[0]?.value,
     message: 'Archetype type:',
+  });
+  const registryType = await select({
+    choices: REGISTRIES_OPTIONS,
+    default: REGISTRIES_OPTIONS[0].value,
+    message: 'Registry type:',
   });
   const projectName = (
     await input({
@@ -78,6 +83,7 @@ const init = async () => {
     description,
     projectDir,
     projectName,
+    registryType,
     repositoryUrl,
     scope,
   });
