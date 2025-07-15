@@ -2,6 +2,8 @@
 
 import { join } from 'node:path';
 
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
 import input from '@inquirer/input';
 import select from '@inquirer/select';
 import { checkUpdates } from '@rodbe/check-updates';
@@ -15,6 +17,11 @@ initEvents();
 
 const init = async () => {
   let commandName = '';
+  const argv = await yargs(hideBin(process.argv))
+    .version(false)
+    .options({
+      dev: { alias: 'd', type: 'boolean' },
+    }).argv;
 
   const { checkNewVersion } = checkUpdates({
     askToUpdate: true,
@@ -23,7 +30,11 @@ const init = async () => {
     updateCheckInterval: WEEK_IN_MS,
   });
 
-  await checkNewVersion?.();
+  if (argv.dev) {
+    console.log('Modo DEV');
+  } else {
+    await checkNewVersion?.();
+  }
 
   const archetypeType = await select({
     choices: ARCHETYPE_OPTIONS,
