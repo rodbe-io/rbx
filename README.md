@@ -12,7 +12,7 @@ This project provides a **CLI tool** to **scaffold new projects based on predefi
 
 ## Prerequisites
 
-- **Node.js 18.18.2 or higher**
+- **Node.js 22.14.0 or higher**
 
 ## Installation
 
