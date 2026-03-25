@@ -41,33 +41,41 @@ const init = async () => {
     default: ARCHETYPE_OPTIONS[0]?.value,
     message: 'Archetype type:',
   });
+
   const registryType = await select({
     choices: REGISTRIES_OPTIONS,
     default: REGISTRIES_OPTIONS[0].value,
     message: 'Registry type:',
   });
+
   const projectName = (
     await input({
       message: 'Project name:',
       required: true,
     })
   ).trim();
+
   const scope = (
     await input({
       message: 'Scope: (Optional)',
     })
   ).trim();
+
   const description = (
     await input({
       message: 'Description: (Optional)',
     })
   ).trim();
+
   const repositoryUrl = (
     await input({
       message: 'Repository url (HTTPS):',
       required: true,
     })
-  ).trim();
+  )
+    .trim()
+    .replace(/\.git$/, '');
+
   const author = (
     await input({
       message: 'Author: (Optional)',
